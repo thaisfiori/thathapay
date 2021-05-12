@@ -1,4 +1,4 @@
-defmodule Thathapay.Account.Deposit do
+defmodule Thathapay.Account.Withdraw do
   alias Ecto.Multi
   alias Thathapay.{Account, Repo}
 
@@ -28,11 +28,15 @@ defmodule Thathapay.Account.Deposit do
   defp sum_values(%Account{balance: balance}, value) do
     value
     |> is_integer()
+    # |> IO.inspect(label: "veja essa merda")
     |> handle_number(balance, value)
   end
 
-  defp handle_number(true, balance, value), do: balance + value
-  defp handle_number(false, _balance, _value), do: {:error, "Invalid deposit value!"}
+  defp handle_number(true, balance, value), do: (balance - value) |> is_positive?
+  defp handle_number(false, _balance, _value), do: {:error, "Invalid withdraw value!"}
+
+  defp is_positive?(int) when int >= 0, do: int
+  defp is_positive?(int) when int < 0, do: {:error, "Insufficient funds for this transaction!"}
 
   defp update_account({:error, _reason} = error, _repo, _account), do: error
 

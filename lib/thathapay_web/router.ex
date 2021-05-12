@@ -8,7 +8,6 @@ defmodule ThathapayWeb.Router do
   scope "/api", ThathapayWeb do
     pipe_through :api
 
-
     get "/:filename", WelcomeController, :index
 
     post "/users", UsersController, :create

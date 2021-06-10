@@ -12,4 +12,16 @@ defmodule ThathapayWeb.AccountsView do
       }
     }
   end
+
+  def render("status.json", %{
+        account: %Account{id: account_id, balance: balance}
+      }) do
+    %{
+      message: "This is the account balance!",
+      account: %{
+        id: account_id,
+        balance: balance
+      }
+    }
+  end
 end

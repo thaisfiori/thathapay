@@ -21,11 +21,11 @@ defmodule ThathapayWeb.AccountsController do
     end
   end
 
-  def index(conn, params) do
-    with {:ok, %Account{} = account} <- Thathapay.index(params) do
+  def balance(conn, params) do
+    with {:ok, %Account{} = account} <- Thathapay.balance(params) do
       conn
       |> put_status(:ok)
-      |> render("update.json", account: account)
+      |> render("status.json", account: account)
     end
   end
 end

@@ -7,6 +7,7 @@ defmodule Thathapay do
   if it comes from the database, an external API or others.
   """
   alias Thathapay.Users.Create, as: UserCreate
+  alias Thathapay.Account.Index
   alias Thathapay.Account.Deposit
   alias Thathapay.Account.Withdraw
 
@@ -14,4 +15,5 @@ defmodule Thathapay do
 
   defdelegate deposit(params), to: Deposit, as: :call
   defdelegate withdraw(params), to: Withdraw, as: :call
+  defdelegate index(params), to: Index, as: :call
 end

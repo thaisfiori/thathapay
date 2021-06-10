@@ -20,4 +20,12 @@ defmodule ThathapayWeb.AccountsController do
       |> render("update.json", account: account)
     end
   end
+
+  def index(conn, params) do
+    with {:ok, %Account{} = account} <- Thathapay.index(params) do
+      conn
+      |> put_status(:ok)
+      |> render("update.json", account: account)
+    end
+  end
 end

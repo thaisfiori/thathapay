@@ -1,5 +1,4 @@
 defmodule Thathapay.Users.Create do
-
   alias Ecto.Multi
   alias Thathapay.{Account, Repo, User}
 
@@ -7,7 +6,7 @@ defmodule Thathapay.Users.Create do
     Multi.new()
     |> Multi.insert(:create_user, User.changeset(params))
     |> Multi.run(:create_account, fn repo, %{create_user: user} ->
-       insert_account(repo, user)
+      insert_account(repo, user)
     end)
     |> Multi.run(:preload_data, fn repo, %{create_user: user} -> preload_data(repo, user) end)
     |> run_transaction()
@@ -34,5 +33,4 @@ defmodule Thathapay.Users.Create do
       {:ok, %{preload_data: user}} -> {:ok, user}
     end
   end
-
 end

@@ -28,7 +28,6 @@ defmodule Thathapay.Account.Withdraw do
   defp sum_values(%Account{balance: balance}, value) do
     value
     |> is_integer()
-    # |> IO.inspect(label: "veja essa merda")
     |> handle_number(balance, value)
   end
 

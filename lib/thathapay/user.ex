@@ -5,7 +5,6 @@ defmodule Thathapay.User do
   alias Ecto.Changeset
   alias Thathapay.Account
 
-
   @primary_key {:id, :binary_id, autogenerate: true}
 
   @required_params [:name, :age, :email, :password, :nickname]
@@ -22,9 +21,8 @@ defmodule Thathapay.User do
     timestamps()
   end
 
-
-  #Vou pegar uma struct vazia e colocar os parâmetros nela
-  #através do cast e depois passar os validadores.
+  # Vou pegar uma struct vazia e colocar os parâmetros nela
+  # através do cast e depois passar os validadores.
   def changeset(params) do
     %__MODULE__{}
     |> cast(params, @required_params)

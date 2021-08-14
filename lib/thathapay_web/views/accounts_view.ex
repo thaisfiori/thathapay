@@ -24,4 +24,16 @@ defmodule ThathapayWeb.AccountsView do
       }
     }
   end
+
+  def render("transfer.json", %{
+        account: %Account{id: account_id, balance: balance}
+      }) do
+    %{
+      message: "Transfer completed!",
+      account: %{
+        id: account_id,
+        balance: balance
+      }
+    }
+  end
 end

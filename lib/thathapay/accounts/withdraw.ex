@@ -9,6 +9,7 @@ defmodule Thathapay.Account.Withdraw do
       update_balance(repo, account, value)
     end)
     |> run_transaction()
+    |> IO.inspect()
   end
 
   defp get_account(repo, id) do

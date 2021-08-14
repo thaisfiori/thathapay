@@ -6,10 +6,12 @@ defmodule ThathapayWeb.AccountsController do
   action_fallback ThathapayWeb.FallbackController
 
   def deposit(conn, params) do
-    with {:ok, %Account{} = account} <- Thathapay.deposit(params) do
+    with {:ok, %Account{} = account} <- Thathapay.deposit(params) |> IO.inspect() do
       conn
       |> put_status(:ok)
       |> render("update.json", account: account)
+    else
+      {:error, "Invalid deposit value!"} -> :error
     end
   end
 
@@ -26,6 +28,14 @@ defmodule ThathapayWeb.AccountsController do
       conn
       |> put_status(:ok)
       |> render("status.json", account: account)
+    end
+  end
+
+  def transfer(conn, params) do
+    with {:ok, %Account{} = account} <- Thathapay.transfer(params) do
+      conn
+      |> put_status(:ok)
+      |> render("transfer.json", account: account)
     end
   end
 end

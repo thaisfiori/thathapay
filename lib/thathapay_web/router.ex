@@ -15,6 +15,7 @@ defmodule ThathapayWeb.Router do
     post "/accounts/:id/deposit", AccountsController, :deposit
     post "/accounts/:id/withdraw", AccountsController, :withdraw
     get "/accounts/:global_id", AccountsController, :balance
+    post "/accounts/transfer", AccountsController, :transfer
   end
 
   # Enables LiveDashboard only for development
